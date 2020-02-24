@@ -9,9 +9,10 @@
  1. `JDK 1.8` at least - for running app
  2. `Gradle 6+` - for building package
 &nbsp;
-
+![](https://github.com/ElinaValieva/spring-websocket-chat/blob/master/pic.gif)
+&nbsp;
 ## How to start :triangular_flag_on_post:
-### :leaves: Spring Boot Application
+#### :leaves: Spring Boot Application
 ```
 # Git clone
 git clone https://github.com/ElinaValieva/spring-websocket-chat.git
@@ -22,9 +23,8 @@ $ ./gradlew build
 # Run applicatiom
 java -jar build/libs/chat-0.0.1-SNAPSHOT.jar
 ```
-&nbsp;
-### :whale: From DockerHub
+#### :whale: From DockerHub
 ```
 docker pull elvaliev/chat
-docker run elvaliev/chat --expose	8085
+docker run elvaliev/chat --expose 8085
 ```
