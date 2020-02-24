@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.2.4.RELEASE"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
+    id("com.google.cloud.tools.jib") version "1.3.0"
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
 }
@@ -38,6 +39,40 @@ dependencies {
     }
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.amqp:spring-rabbit-test")
+}
+
+jib {
+    to {
+        image = "elvaliev/chat"
+        tags = setOf("$version", "$version.${extra["buildNumber"]}")
+        auth {
+            username = System.getenv("DOCKERHUB_USERNAME")
+            password = System.getenv("DOCKERHUB_PASSWORD")
+        }
+    }
+    container {
+        labels = mapOf(
+                "maintainer" to "Elina Valieva <veaufa@mail.ru>",
+                "org.opencontainers.image.title" to "chat",
+                "org.opencontainers.image.description" to "Chat example with spring & websockets",
+                "org.opencontainers.image.version" to "$version",
+                "org.opencontainers.image.authors" to "Elina Valieva <veaufa@mail.ru>>",
+                "org.opencontainers.image.url" to "https://github.com/ElinaValieva/spring-websocket-chat",
+                "org.opencontainers.image.licenses" to "MIT"
+        )
+        jvmFlags = listOf(
+                "-server",
+                "-Djava.awt.headless=true",
+                "-XX:InitialRAMFraction=2",
+                "-XX:MinRAMFraction=2",
+                "-XX:MaxRAMFraction=2",
+                "-XX:+UseG1GC",
+                "-XX:MaxGCPauseMillis=100",
+                "-XX:+UseStringDeduplication"
+        )
+        workingDirectory = "/chat"
+        ports = listOf("8085")
+    }
 }
 
 tasks.withType<Test> {
