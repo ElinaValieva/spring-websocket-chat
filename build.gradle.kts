@@ -11,6 +11,7 @@ plugins {
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
+val buildNumber by extra("0")
 
 val developmentOnly by configurations.creating
 configurations {
