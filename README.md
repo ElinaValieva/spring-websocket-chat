@@ -9,6 +9,7 @@
  1. `JDK 1.8` at least - for running app
  2. `Gradle 6+` - for building package
 &nbsp;
+
 ![](https://github.com/ElinaValieva/spring-websocket-chat/blob/master/pic.gif)
 &nbsp;
 ## How to start :triangular_flag_on_post:
