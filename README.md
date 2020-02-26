@@ -21,11 +21,11 @@ git clone https://github.com/ElinaValieva/spring-websocket-chat.git
 # Gradle build jar
 $ ./gradlew build
 
-# Run applicatiom
+# Run application
 java -jar build/libs/chat-0.0.1-SNAPSHOT.jar
 ```
-#### :whale: From DockerHub
+#### :whale: From [DockerHub](https://hub.docker.com/repository/docker/elvaliev/chat)
 ```
-docker pull elvaliev/chat
+docker pull elvaliev/chat:latest
 docker run elvaliev/chat --expose 8085
 ```
